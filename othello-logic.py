@@ -2,16 +2,21 @@
 # Description: Othello game logic - originally written for Intro to Computer Science II at Oregon State University
 
 class Player:
-    """Represents a player in a game of Othello"""
+    """
+    Represents a player in a game of Othello
+    """
 
-    def __init__(self, name, piece_color):
+    def __init__(self, name: str, piece_color: str) -> None:
 
         self.name = name
         self.piece_color = piece_color
 
 
 class Othello:
-    """Represents a game of Othello. Initializes the board to the standard Othello opening, and player_list to []"""
+    """
+    Represents a game of Othello.
+    Initializes the board to the standard Othello opening, and player_list to an empty list.
+    """
 
     def __init__(self, board=None, player_list=None):
 
@@ -31,7 +36,9 @@ class Othello:
         self._player_list = []
 
     def print_board(self):
-        """Prints out the current board"""
+        """
+        Prints out the current board
+        """
 
         return print('\n'.join(['    '.join(element) for element in self._board]))
         #  returns the board with each element separated by a tab space, w/o brackets or commas
@@ -45,7 +52,9 @@ class Othello:
         self._player_list.append(Player(player_name, color))
 
     def return_winner(self):
-        """Tallies the total number of white and black pieces and returns the winner of the game"""
+        """
+        Tallies the total number of white and black pieces and returns the winner of the game
+        """
 
         white_pieces = len(self.current_positions('white'))
         black_pieces = len(self.current_positions('black'))
@@ -61,7 +70,9 @@ class Othello:
         return f"It's a tie"
 
     def return_available_positions(self, color: str) -> list[tuple[int, int]]:
-        """Returns a list of possible positions a player can place their piece"""
+        """
+        Returns a list of possible positions a player can place their piece
+        """
 
         color = 'O' if color == 'white' else 'X'
 
@@ -123,7 +134,9 @@ class Othello:
         return False
 
     def make_move(self, color: str, piece_position: tuple[int, int]) -> list[list[str]]:
-        """Places the specified color piece onto the desired position, flips pieces, and returns updated game board"""
+        """
+        Places the specified color piece onto the desired position, flips pieces, and returns updated game board
+        """
 
         color = 'O' if color == 'white' else 'X'
         row, column = piece_position
@@ -161,11 +174,13 @@ class Othello:
             if available_pos == [] and self.return_available_positions(opponent) == []:
                 white_pieces = len(self.current_positions('white'))
                 black_pieces = len(self.current_positions('black'))
-                return f'Game is ended white piece: {white_pieces} black piece: {black_pieces}' + '\n' + \
+                return f'Game is ended! white pieces: {white_pieces} black pieces: {black_pieces}' + '\n' + \
                     self.return_winner()
 
     def flip_pieces(self, color: str, piece_position: tuple[int, int]) -> list[tuple[int, int]]:
-        """Gets all directions where a move is valid based on the piece color and position"""
+        """
+        Gets all directions where a move is valid based on the piece color and position
+        """
 
         row, column = piece_position
 
